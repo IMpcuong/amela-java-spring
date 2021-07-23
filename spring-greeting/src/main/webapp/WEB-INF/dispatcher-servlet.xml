@@ -20,7 +20,7 @@
     </bean>
 
 <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--        <property name="prefix" value="/WEB-INF/TutorialSpring/Views1/"/>-->
+<!--        <property name="prefix" value="/WEB-INF/ControllerTutorial/Views/"/>-->
 <!--        <property name="suffix" value=".jsp"/>-->
 <!--    </bean>-->
 

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+<!--    <bean id="customer" class="com.amela.Model.CustomerTest">-->
+<!--        <property name="name" value="Ronaldo"/>-->
+<!--    </bean>-->
+
+<!--    <bean name="customerService" class="com.amela.Service."/>-->
+
+<!--    <bean name="translatorService" class="com.amela.Service." />-->
+
+    <!--    <bean name="convertMoneyService" class='TutorialSpringMVC.com.amela.Service.ConvertMoneyService' >-->
+    <!--        <constructor-arg index="0" value=0 />-->
+    <!--        <constructor-arg index="1" value=0 />-->
+    <!--    </bean>-->
+</beans>

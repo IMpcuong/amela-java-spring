@@ -1,5 +1,7 @@
 package com.amela.configuration;
 
+import com.amela.service.CustomerService;
+import com.amela.service.ICustomerService;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -23,6 +25,11 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+    }
+
+    @Bean
+    public ICustomerService customService() {
+        return new CustomerService();
     }
 
     //Config Thymeleaf

@@ -4,12 +4,22 @@
 </head>
 <body>
 <h3>Customers</h3>
+
 <p>
     <a th:href="@{/customer/create}">
         Add new customer
     </a>
 </p>
 
+<form ui-jp="parsley" action="/customer/search" method="post">
+    <div class="row m-b">
+        <div class="col-sm-6">
+            Search by Name: <input id="filter" type="text" name="name" class="form-control input-sm w-auto inline m-r"/>
+            <button class="md-btn md-fab m-b-sm indigo" type="submit"><i class="material-icons md-24">&#xe8b6;</i></button>
+        </div>
+    </div>
+</form>
+<br>
 <table id = "customers">
     <thead>
     <tr>

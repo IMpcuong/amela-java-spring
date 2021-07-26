@@ -1,12 +1,12 @@
 package com.amela.service;
 
 import com.amela.model.Customer;
+import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
+@Service
 public class CustomerService implements ICustomerService {
     private static final Map<Integer, Customer> customers;
 
@@ -36,9 +36,16 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
+    public List<Customer> findByName(String name) {
+        if (name.equals("")) return new ArrayList<>(customers.values());
+        return customers.values().stream()
+                .filter(c -> c.getName().toLowerCase(Locale.ROOT).contains(name.toLowerCase(Locale.ROOT)))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void update(int id, Customer customer) {
         customers.put(id, customer);
-
     }
 
     @Override

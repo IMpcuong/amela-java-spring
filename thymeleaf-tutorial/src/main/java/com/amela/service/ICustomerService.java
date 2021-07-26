@@ -11,6 +11,8 @@ public interface ICustomerService {
 
     Customer findById(int id);
 
+    List<Customer> findByName(String name);
+
     void update(int id, Customer customer);
 
     void remove(int id);

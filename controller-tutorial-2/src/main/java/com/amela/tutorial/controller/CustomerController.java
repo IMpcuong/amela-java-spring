@@ -18,7 +18,7 @@ public class CustomerController {
 
     @GetMapping("/{id}")
     public ModelAndView showInformation(@PathVariable Long id) {
-        ModelAndView modelAndView = new ModelAndView("customers/info");
+        ModelAndView modelAndView = new ModelAndView("info");
         Customer customer = customerService.findOne(id);
         modelAndView.addObject("customer", customer);
         return modelAndView;
@@ -26,7 +26,7 @@ public class CustomerController {
 
     @GetMapping
     public ModelAndView showList() {
-        ModelAndView modelAndView = new ModelAndView("customers/list");
+        ModelAndView modelAndView = new ModelAndView("list");
         List<Customer> customers = customerService.findAll();
         modelAndView.addObject("customers", customers);
         return modelAndView;

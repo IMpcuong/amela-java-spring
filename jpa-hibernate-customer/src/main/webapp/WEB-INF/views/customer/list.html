@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" encoding="UTF-8">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>List Customers</title>
+    <meta charset="utf-8" />
 </head>
 <body>
-<a href="/create-customer">Create new customer</a>
+
+<a href="/customers"><button type="submit">Home</button></a>
+<a href="/create-customer"><button type="submit">Create new customer</button></a>
+<a href="/insert-customer"><button type="submit">Insert new customer</button></a>
 <h1>Customers</h1>
+
 <form method="post" action="/search">
     Search by first name:
     <input id="filter" type="text" name="nameSearch" class="form-control input-sm w-auto inline m-r" placeholder="Search..."/>
     <button type="submit">Search</button>
 </form>
-<br>
+
+<th:block th:if="${message}">
+    <p th:text="${message}"></p>
+</th:block>
+
 <table border="1" cellspacing="2">
     <thead>
     <tr>

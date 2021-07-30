@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" encoding="UTF-8">
 <head>
-    <meta charset="UTF-8">
     <title>Edit customer</title>
+    <meta charset="utf-8" />
 </head>
 <body>
 <h1>Edit customer</h1>
 <p>
     <a href="/customers">Return to Customer list</a>
 </p>
+
 <th:block th:if="${message}">
     <p th:text="${message}"></p>
 </th:block>
+
 <form th:action="@{/edit-customer}" th:object="${customer}" method="post">
     <input th:type="hidden" name="id" th:field="*{id}">
     <table>

@@ -16,6 +16,7 @@ public class CustomerController {
     @Autowired
     private ICustomerService customerService;
 
+    //Create new customer using JPA
     @GetMapping("/create-customer")
     public ModelAndView showCreateForm() {
         ModelAndView modelAndView = new ModelAndView("/customer/create");
@@ -32,6 +33,24 @@ public class CustomerController {
         return modelAndView;
     }
 
+    //Create customer using Store Procedure
+    @GetMapping("/insert-customer")
+    public ModelAndView showInsertForm() {
+        ModelAndView modelAndView = new ModelAndView("/customer/create");
+        modelAndView.addObject("customer", new Customer());
+        return modelAndView;
+    }
+
+    @PostMapping("/insert-customer")
+    public ModelAndView saveInsertCustomerProcedure(@ModelAttribute("customer") Customer customer) {
+        customerService.insertWithStoredProcedure(customer);
+        ModelAndView modelAndView = new ModelAndView("/customer/create");
+        modelAndView.addObject("customer", new Customer());
+        modelAndView.addObject("message", "Insert new customer by using procedure successfully!");
+        return modelAndView;
+    }
+
+    //List all customers
     @GetMapping("/customers")
     public ModelAndView listCustomers() {
         List<Customer> customers = customerService.findAll();
@@ -84,12 +103,12 @@ public class CustomerController {
     @PostMapping("/search")
     public ModelAndView findByName(@RequestParam("nameSearch") String nameSearch) {
         List<Customer> customerSearch = customerService.findByName(nameSearch);
-        ModelAndView modelAndView;
+        ModelAndView modelAndView = new ModelAndView("/customer/list");
         if (customerSearch != null) {
-            modelAndView = new ModelAndView("/customer/list");
             modelAndView.addObject("customers", customerSearch);
+            modelAndView.addObject("message", "Result list:");
         } else {
-            modelAndView = new ModelAndView("/error-404");
+            modelAndView.addObject("message", "Customer not found!");
         }
         return modelAndView;
     }

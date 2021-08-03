@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Result search customers</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div class="container">
+    <a href="/customers/1?sortField=id&sortDir=asc">Home</a><br>
+    <a href="/provinces">Provinces list</a><br>
+    <h1>Customers</h1>
+
+    <table border="1" class="table table-striped">
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Province</th>
+        </tr>
+        <th:block th:each="customer : ${customers}">
+            <tr>
+                <td th:text="${customer.id}"></td>
+                <td th:text="${customer.firstName}"></td>
+                <td th:text="${customer.lastName}"></td>
+                <td th:if="${customer.province}" th:text="${customer.province.name}"></td>
+                <td th:unless="${customer.province}"></td>
+            </tr>
+        </th:block>
+    </table>
+<!--    <div>&nbsp;</div>-->
+<!--    <div><i>Sorted by [[${sortField}]] in [[${sortDir}]] order.</i></div>-->
+<!--    <div>&nbsp;</div>-->
+<!--    <div>-->
+<!--        Total Items: [[${totalItems}]]<br>-->
+<!--        <a th:if="${currentPage > 1}" th:href="@{'/search/1?search=' + ${inputSearch} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a>-->
+<!--        <span th:unless="${currentPage > 1}">First</span>-->
+<!--        <a th:if="${currentPage > 1}" th:href="@{'/search/' + ${currentPage - 1} + '?search=' + ${inputSearch} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>-->
+<!--        <span th:unless="${currentPage > 1}">Previous</span>-->
+<!--        <span th:each="i: ${#numbers.sequence(1, totalPages)}">-->
+<!--        <a th:if="${currentPage != i}" th:href="@{'/search/' + ${i} + '?search=' + ${inputSearch} +'?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>-->
+<!--        <span th:unless="${currentPage != i}">[[${i}]]</span>-->
+<!--        &nbsp-->
+<!--    </span>-->
+<!--        <a th:if="${currentPage < totalPages}" th:href="@{'/search/' + ${currentPage + 1} + '?search=' + ${inputSearch} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>-->
+<!--        <span th:unless="${currentPage < totalPages}">Next</span>-->
+<!--        <a th:if="${currentPage < totalPages}" th:href="@{'/search/' + ${totalPages} + '?search=' + ${inputSearch} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>-->
+<!--        <span th:unless="${currentPage < totalPages}">Last</span>-->
+<!--    </div>-->
+</div>
+</body>
+</html>

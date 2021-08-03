@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>List customers</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+<div class="container">
+<a href="/customers/1?sortField=id&sortDir=asc">Home</a><br>
+<a href="/provinces">Provinces list</a><br>
+<a href="/create-customer">Create new customer</a>
+<h1>Customers</h1>
+
+<form method="get" th:action="@{'/search/' + ${currentPage}}">
+    Search by first name:
+    <input name="search" type="text" id="search"/>
+    <input type="submit" value="Search" placeholder="Search..."
+           th:href="@{'/search/' + ${currentPage} + '?search=' + ${inputSearch} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}"/>
+</form>
+
+<table border="1" class="table table-striped">
+    <tr>
+        <th>
+            <a th:href="@{'/customers/' + ${currentPage} + '?sortField=id&sortDir=' + ${reverseSortDir}}">ID</a>
+        </th>
+        <th>
+            <a th:href="@{'/customers/' + ${currentPage} + '?sortField=firstName&sortDir=' + ${reverseSortDir}}">First name</a>
+        </th>
+        <th>Last name</th>
+        <th>Province</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    <th:block th:each="customer : ${customers}">
+        <tr>
+            <td th:text="${customer.id}"></td>
+            <td th:text="${customer.firstName}"></td>
+            <td th:text="${customer.lastName}"></td>
+            <td th:if="${customer.province}" th:text="${customer.province.name}"></td>
+            <td th:unless="${customer.province}"></td>
+            <td><a th:href="@{/edit-customer/__${customer.id}__ }">Edit</a></td>
+            <td><a th:href="@{/delete-customer/__${customer.id}__ }">Delete</a></td>
+        </tr>
+    </th:block>
+</table>
+<div>&nbsp;</div>
+<div><i>Sorted by [[${sortField}]] in [[${sortDir}]] order.</i></div>
+<div>&nbsp;</div>
+<div>
+    Total Items: [[${totalItems}]]<br>
+    <a th:if="${currentPage > 1}" th:href="@{'/customers/1' + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">First</a>
+    <span th:unless="${currentPage > 1}">First</span>
+    <a th:if="${currentPage > 1}" th:href="@{'/customers/' + ${currentPage - 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Previous</a>
+    <span th:unless="${currentPage > 1}">Previous</span>
+    <span th:each="i: ${#numbers.sequence(1, totalPages)}">
+        <a th:if="${currentPage != i}" th:href="@{'/customers/' + ${i} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">[[${i}]]</a>
+        <span th:unless="${currentPage != i}">[[${i}]]</span>
+        &nbsp
+    </span>
+    <a th:if="${currentPage < totalPages}" th:href="@{'/customers/' + ${currentPage + 1} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Next</a>
+    <span th:unless="${currentPage < totalPages}">Next</span>
+    <a th:if="${currentPage < totalPages}" th:href="@{'/customers/' + ${totalPages} + '?sortField=' + ${sortField} + '&sortDir=' + ${sortDir}}">Last</a>
+    <span th:unless="${currentPage < totalPages}">Last</span>
+</div>
+</div>
+</body>
+</html>

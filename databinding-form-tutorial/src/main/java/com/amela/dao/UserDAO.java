@@ -41,12 +41,11 @@ public class UserDAO extends User {
 
     public User checkLogin(Login login) {
         for (User u: users) {
-            if(u.getAccount().equals(login.getAccount())
-                    && u.getPassword().equals(login.getPassword())){
+            if (u.getAccount().equals(login.getAccount()) && 
+                u.getPassword().equals(login.getPassword())) {
                 return u;
             }
         }
         return null;
     }
 }
-
